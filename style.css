@@ -1,0 +1,65 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    --left : 400px;
+    --top: 200px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/*start header*/
+.container {
+    width: 95vw;
+    margin: 50px auto;
+    border: 2px solid black;
+    border-radius: 20px;
+    box-shadow: 20px 20px 20px orange inset, -20px -20px 20px red inset;
+}
+
+.container .box {
+    width: 95%;
+    margin: 20px;
+    border-radius: 20px;
+    padding: 20px;
+    border: 2px solid black;
+    min-height: 100px;
+    display: flex;
+    justify-content: space-between;
+} 
+
+.container .box:first-of-type {
+
+}
+
+.errMsg {
+    color: red;
+    text-align: center;margin: auto;
+}
+
+#btmBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.info {
+    width: fit-content;
+    background-color: rgb(158, 83, 30);
+    color: white;
+    font-size: 25px;
+    padding: 15px 30px;
+    border-radius: 20px;
+}
+
+#info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}

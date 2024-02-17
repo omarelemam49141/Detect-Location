@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Task 1</title>
+    <style>
+        #myMap {
+            width: 600px;
+            height: 600px;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCzF9jHaha0mweppW3pmJ3Iq2rsaZYoXc8"></script>
+
+    <script>
+        let lat, long, accuracy, timestamp;
+        function loadLocation(){
+            
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, preventPosition);
+            } else {
+                alert("not supported");
+            }
+
+            function showPosition(position){
+                info.innerHTML = "";
+                lat = position.coords.latitude;
+                long = position.coords.longitude; 
+                accuracy = position.coords.accuracy;
+                timeStamp = position.timestamp;
+                mymap = document.getElementById("myMap");
+
+                var location = new google.maps.LatLng(lat, long);
+                //2- specify specs of map : zoom : , center
+                var specs = { zoom: 17, center: location };
+                // 3 retrive map and display map
+                let mapvar = new google.maps.Map(mymap, specs);
+
+                var marker = new google.maps.Marker({
+                    draggable:true,
+                    map: mapvar,
+                    position: location
+                });
+            }
+
+            function preventPosition(err){
+                document.getElementById("btmBox").innerHTML = `<h3 class="errMsg">${err.message}</h3>`;
+            }
+        }
+
+        function displayLocationInfo()
+        {
+            myMap.innerHTML = "";
+            info.innerHTML = `
+                <p class="info">Lattitude: ${lat}</p>
+                <p class="info">Longitude: ${long}</p>
+                <p class="info">Accuracy: ${accuracy}</p>
+                <p class="info">Time Stamp: ${timeStamp}</p>
+            `
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="top box" id="topBox">
+            <button onclick="loadLocation()">Display Map</button>
+            <button onclick="displayLocationInfo()">Detailed information</button>
+        </div>
+        <div class="bottom box" id="btmBox">
+            <div id="info"></div>
+            <map id="myMap">
+
+            </map>
+        </div>
+    </div>
+</body>
+</html>
